@@ -82,20 +82,28 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <ListView
-        android:id="@+id/listPlaylist"
-        android:layout_width="411dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="25dp"
-        android:background="#196597"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/mySwipy"
+        android:layout_width="415dp"
+        android:layout_height="701dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/constraintLayout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:srl_direction="bottom">
 
+        <ListView
+            android:id="@+id/listPlaylist"
+            android:layout_width="411dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="25dp"
+            android:background="#196597"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+            app:layout_constraintVertical_bias="0.0" />
 
+    </com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,30 +1,30 @@
 package com.example.reto2deezer.control;
 
-import android.media.Image;
+import android.content.Intent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.reto2deezer.R;
 import com.example.reto2deezer.model.DataContainerTrack;
+import com.example.reto2deezer.model.Playlist;
 import com.example.reto2deezer.model.Track;
+import com.example.reto2deezer.util.Constants;
 import com.example.reto2deezer.util.HTTPSWebUtilDomi;
-import com.example.reto2deezer.view.TrackAdapter;
+import com.example.reto2deezer.view.TrackActivity;
 import com.example.reto2deezer.view.TracklistActivity;
 import com.google.gson.Gson;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
-public class TracklistController implements View.OnClickListener, HTTPSWebUtilDomi.OnResponseListener, TrackAdapter.OnItemClickListener {
+public class TracklistController implements View.OnClickListener, HTTPSWebUtilDomi.OnResponseListener, SwipyRefreshLayout.OnRefreshListener {
 
     private TracklistActivity tracklistActivity;
     private HTTPSWebUtilDomi utilDomi;
-    private String url;
     private DataContainerTrack data;
+    private Playlist playlist;
 
-
-    public TracklistController(TracklistActivity tracklistActivity){
+    public TracklistController(TracklistActivity tracklistActivity) {
 
         this.tracklistActivity = tracklistActivity;
 
@@ -32,53 +32,137 @@ public class TracklistController implements View.OnClickListener, HTTPSWebUtilDo
         utilDomi.setListener(this);
 
         tracklistActivity.getBack().setOnClickListener(this);
+        tracklistActivity.getMyRefresh().setOnRefreshListener(this);
 
-        url=(String)tracklistActivity.getIntent().getExtras().get("response");
+        data = (DataContainerTrack) tracklistActivity.getIntent().getExtras().get("dataTracks");
+        playlist = (Playlist) tracklistActivity.getIntent().getExtras().get("playlist");
 
+        updatePlaylist();
         updateTracks();
 
     }
 
+
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.back:
 
+                tracklistActivity.onBackPressed();
+
                 break;
+
+
+            default:
+
+                Intent i = new Intent(tracklistActivity, TrackActivity.class);
+                i.putExtra("track", tracklistActivity.getAdapter().getTracks().get(tracklistActivity.getTracklist().getChildAdapterPosition(v)));
+                tracklistActivity.startActivity(i);
+
+                break;
+
 
         }
 
 
     }
 
-    public void updateTracks(){
+    public void updatePlaylist() {
 
-        Gson gson = new Gson();
-        data = gson.fromJson(url, DataContainerTrack.class);
-        ArrayList<Track> t = new ArrayList<>();
-        Collections.addAll(t,data.getData());
-
-        tracklistActivity.runOnUiThread(()->{
-
-            tracklistActivity.getAdapter().setTracks(t);
-            tracklistActivity.getAdapter().notifyDataSetChanged();
-
-        });
+        tracklistActivity.getTracklistTitle().setText(playlist.getTitle());
+        Glide.with(tracklistActivity).load(playlist.getPicture_big()).centerCrop().into(tracklistActivity.getTracklistImage());
+        tracklistActivity.getNumberFans().setText(playlist.getFans() + "");
+        tracklistActivity.getNumberTracks3().setText(playlist.getNb_tracks() + "");
+        tracklistActivity.getDescription().setText(playlist.getDescription());
 
 
     }
+
+
+    public void updateTracks() {
+
+        if (data.getData() != null) {
+            for (int i = 0; i < data.getData().length; i++) {
+
+                int index = i;
+                new Thread(() -> {
+                    utilDomi.GETrequest(Constants.UPDATE_TRACK_CALLBACK, "https://api.deezer.com/track/" + data.getData()[index].getId());
+                }).start();
+
+            }
+        }
+
+    }
+
 
     @Override
     public void onResponse(int callbackID, String response) {
 
+
+        switch (callbackID) {
+
+            case Constants.UPDATE_TRACK_CALLBACK:
+
+                Gson gson = new Gson();
+                Track track = gson.fromJson(response, Track.class);
+
+
+                tracklistActivity.runOnUiThread(() -> {
+
+                    tracklistActivity.getAdapter().getTracks().add(track);
+                    tracklistActivity.getAdapter().notifyDataSetChanged();
+
+                });
+
+
+                break;
+
+            case Constants.UPDATE_MORE_INFO_CALLBACK:
+
+                Gson gson2 = new Gson();
+                data = gson2.fromJson(response, DataContainerTrack.class);
+                updateTracks();
+
+
+                break;
+
+        }
+
     }
+
 
     @Override
-    public void onItemClick(int position) {
+    public void onRefresh(SwipyRefreshLayoutDirection direction) {
 
-        Toast.makeText(tracklistActivity, tracklistActivity.getAdapter().getTracks().get(position).getTitle(),Toast.LENGTH_SHORT).show();
 
+        if (data.getNext() != null && data.getNext() != "") {
+
+            new Thread(() -> {
+
+                utilDomi.GETrequest(Constants.UPDATE_MORE_INFO_CALLBACK, data.getNext());
+
+            }).start();
+
+        }
+
+        if(data.getNext() == null || data.getNext() == ""){
+
+            Toast.makeText(tracklistActivity.getApplicationContext(),"There is no more tracks in this playlist.",Toast.LENGTH_SHORT).show();
+
+        }
+
+
+        new Thread(() -> {
+
+            try {
+                Thread.sleep(1000);
+                tracklistActivity.getMyRefresh().setRefreshing(false);
+            } catch (Exception ex) {
+
+            }
+        }).start();
     }
+
 }

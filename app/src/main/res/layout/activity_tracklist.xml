@@ -44,8 +44,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="409dp"
-        android:layout_height="319dp"
+        android:layout_width="405dp"
+        android:layout_height="305dp"
         android:background="#4F97D6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +56,7 @@
             android:layout_width="359dp"
             android:layout_height="42dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="168dp"
+            android:layout_marginTop="160dp"
             android:layout_marginEnd="24dp"
             android:autoText="false"
             android:scrollbarAlwaysDrawHorizontalTrack="true"
@@ -66,16 +66,16 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/tracklistImage"
-            android:layout_width="361dp"
-            android:layout_height="134dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="156dp"
+            android:layout_height="157dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -85,26 +85,27 @@
             android:layout_width="362dp"
             android:layout_height="65dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="224dp"
+            android:layout_marginTop="204dp"
             android:scrollbarAlwaysDrawHorizontalTrack="true"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:text="Description."
             android:textColor="#FFFFFF"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.111"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/numberTracks3"
-            android:layout_width="70dp"
-            android:layout_height="17dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="296dp"
+            android:layout_width="103dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="276dp"
             android:text="#######"
+            android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -113,24 +114,24 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="104dp"
-            android:layout_marginTop="293dp"
-            android:text="Tracks"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="276dp"
+            android:text="Tracks:"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/numberFans"
-            android:layout_width="86dp"
-            android:layout_height="17dp"
-            android:layout_marginStart="264dp"
-            android:layout_marginTop="296dp"
+            android:layout_width="123dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="270dp"
+            android:layout_marginTop="276dp"
             android:text="#######"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -139,24 +140,38 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="356dp"
-            android:layout_marginTop="293dp"
-            android:text="Fans"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="276dp"
+            android:text="Fans:"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tracklist"
-        android:layout_width="405dp"
-        android:layout_height="448dp"
-        android:layout_marginTop="1dp"
-        android:background="#3C78AC"
+    <com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/myRefresh"
+        android:layout_width="414dp"
+        android:layout_height="450dp"
+        app:srl_direction="bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tracklist"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            android:background="#3C78AC"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+            app:layout_constraintVertical_bias="0.0" />
+    </com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

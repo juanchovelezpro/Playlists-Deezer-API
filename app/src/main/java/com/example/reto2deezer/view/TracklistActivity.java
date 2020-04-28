@@ -1,17 +1,19 @@
 package com.example.reto2deezer.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.media.Image;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.example.reto2deezer.R;
 import com.example.reto2deezer.control.TracklistController;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 
 public class TracklistActivity extends AppCompatActivity {
 
@@ -24,6 +26,7 @@ public class TracklistActivity extends AppCompatActivity {
     private TextView numberFans;
     private RecyclerView tracklist;
     private TrackAdapter adapter;
+    private SwipyRefreshLayout myRefresh;
 
 
     @Override
@@ -37,15 +40,25 @@ public class TracklistActivity extends AppCompatActivity {
         numberTracks3 = findViewById(R.id.numberTracks3);
         numberFans = findViewById(R.id.numberFans);
         back = findViewById(R.id.back);
+        myRefresh = findViewById(R.id.myRefresh);
 
-        adapter = new TrackAdapter(this, controller);
+
+        adapter = new TrackAdapter(this);
+
 
         tracklist = findViewById(R.id.tracklist);
         tracklist.setLayoutManager(new LinearLayoutManager(this));
         tracklist.setAdapter(adapter);
+        DividerItemDecoration dI = new DividerItemDecoration(tracklist.getContext(), LinearLayoutManager.VERTICAL);
+        tracklist.addItemDecoration(dI);
 
         controller = new TracklistController(this);
+        adapter.setOnClickListener(controller);
 
+    }
+
+    public SwipyRefreshLayout getMyRefresh() {
+        return myRefresh;
     }
 
     public RecyclerView getTracklist() {

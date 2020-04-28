@@ -1,10 +1,13 @@
 package com.example.reto2deezer.model;
 
-public class Track {
+import java.io.Serializable;
+
+public class Track implements Serializable {
 
 
     private long id;
     private String title;
+    private String title_short;
     private int duration;
     private String link;
     private Album album;
@@ -15,14 +18,23 @@ public class Track {
     public Track() {
     }
 
-    public Track(long id, String title, int duration, String link, Album album, Artist artist, String release_date) {
+    public Track(long id, String title,String title_short, int duration, String link, Album album, Artist artist, String release_date) {
         this.id = id;
         this.title = title;
+        this.title_short = title_short;
         this.duration = duration;
         this.link = link;
         this.album = album;
         this.artist = artist;
         this.release_date = release_date;
+    }
+
+    public String getTitle_short() {
+        return title_short;
+    }
+
+    public void setTitle_short(String title_short) {
+        this.title_short = title_short;
     }
 
     public String getRelease_date() {
@@ -61,11 +73,23 @@ public class Track {
 
     public String getDuration() {
 
-        int min= duration/60;
-        double aux = duration-min;
-        int seconds = (int)aux*60;
+        String dur = "";
 
-        return min+":"+seconds;
+        double aux= duration/60.0;
+        int min = (int) aux;
+        int seconds = (int)((aux-min)*60.0);
+
+        if(seconds/10 < 1){
+
+            dur += min+":0"+seconds;
+
+        }else{
+
+            dur += min+":"+seconds;
+
+        }
+
+        return dur;
     }
 
     public void setDuration(int duration) {

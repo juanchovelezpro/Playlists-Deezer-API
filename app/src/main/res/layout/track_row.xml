@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/trackImage"
-        android:layout_width="136dp"
-        android:layout_height="121dp"
+        android:layout_width="109dp"
+        android:layout_height="106dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -17,8 +17,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="49dp"
-        android:layout_height="31dp"
+        android:layout_width="46dp"
+        android:layout_height="24dp"
         android:layout_marginTop="8dp"
         android:text="Title:"
         android:textColor="#FFFFFF"
@@ -29,8 +29,8 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="61dp"
-        android:layout_height="27dp"
+        android:layout_width="52dp"
+        android:layout_height="26dp"
         android:layout_marginTop="12dp"
         android:text="Artist:"
         android:textColor="#FFFFFF"
@@ -41,9 +41,9 @@
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="94dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="80dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
         android:text="Released:"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -53,8 +53,8 @@
 
     <TextView
         android:id="@+id/trackTitle"
-        android:layout_width="217dp"
-        android:layout_height="31dp"
+        android:layout_width="256dp"
+        android:layout_height="23dp"
         android:layout_marginTop="8dp"
         android:text="TrackTitle"
         android:textColor="#FFFFFF"
@@ -64,9 +64,9 @@
 
     <TextView
         android:id="@+id/artist"
-        android:layout_width="198dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="13dp"
+        android:layout_width="250dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="12dp"
         android:text="ArtistText"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -75,10 +75,9 @@
 
     <TextView
         android:id="@+id/releasedYear"
-        android:layout_width="114dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="14dp"
+        android:layout_width="213dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="8dp"
         android:text="####"
         android:textColor="#FFFFFF"
         android:textSize="18sp"

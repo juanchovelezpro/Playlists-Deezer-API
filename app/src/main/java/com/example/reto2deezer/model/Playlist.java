@@ -1,11 +1,14 @@
 package com.example.reto2deezer.model;
 
-public class Playlist {
+import java.io.Serializable;
+
+public class Playlist implements Serializable {
 
     private long id;
     private String title;
     private String description;
     private int nb_tracks;
+    private int fans;
     private String picture_small;
     private String picture_big;
     private User user;
@@ -15,19 +18,35 @@ public class Playlist {
 
     }
 
-    public Playlist(long id, String title,String description, int nb_tracks, String picture_small, String picture_big, User user, String tracklist) {
+    public Playlist(long id, String title,String description, int nb_tracks,int fans, String picture_small, String picture_big, User user, String tracklist) {
 
         this.id = id;
         this.title = title;
         this.description = description;
         this.nb_tracks = nb_tracks;
+        this.fans = fans;
         this.picture_small = picture_small;
         this.picture_big = picture_big;
         this.user = user;
         this.tracklist = tracklist;
     }
 
+    public int getFans() {
+        return fans;
+    }
+
+    public void setFans(int fans) {
+        this.fans = fans;
+    }
+
     public String getDescription() {
+
+        if(description == null || description == ""){
+
+            description+= "No description.";
+
+        }
+
         return description;
     }
 

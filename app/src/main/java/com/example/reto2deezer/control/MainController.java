@@ -1,7 +1,9 @@
 package com.example.reto2deezer.control;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
@@ -9,25 +11,28 @@ import com.example.reto2deezer.R;
 import com.example.reto2deezer.model.DataContainerPlaylist;
 import com.example.reto2deezer.model.DataContainerTrack;
 import com.example.reto2deezer.model.Playlist;
-import com.example.reto2deezer.model.Track;
 import com.example.reto2deezer.util.Constants;
 import com.example.reto2deezer.util.HTTPSWebUtilDomi;
 import com.example.reto2deezer.view.MainActivity;
 import com.example.reto2deezer.view.TracklistActivity;
 import com.google.gson.Gson;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.OnResponseListener, AdapterView.OnItemClickListener {
+public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.OnResponseListener, AdapterView.OnItemClickListener, SwipyRefreshLayout.OnRefreshListener {
 
     private MainActivity mainActivity;
     private HTTPSWebUtilDomi utilDomi;
     private DataContainerPlaylist data;
+    private DataContainerTrack dt;
+    private Intent intent;
+    private Playlist selected;
 
 
-
-    public  MainController(MainActivity mainActivity){
+    public MainController(MainActivity mainActivity) {
 
         this.mainActivity = mainActivity;
 
@@ -36,28 +41,31 @@ public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.On
         utilDomi.setListener(this);
 
         mainActivity.getListPlaylist().setOnItemClickListener(this);
+        mainActivity.getMySwipy().setOnRefreshListener(this);
+
+        intent = new Intent(mainActivity, TracklistActivity.class);
 
     }
 
     @Override
     public void onClick(View v) {
 
-       switch (v.getId()){
+        switch (v.getId()) {
 
-           case R.id.searchImage:
+            case R.id.searchImage:
 
-            searchPlaylist();
+                searchPlaylist();
 
-               break;
+                break;
 
-       }
+        }
 
     }
 
     @Override
     public void onResponse(int callbackID, String response) {
 
-        switch(callbackID){
+        switch (callbackID) {
 
             case Constants.SEARCH_PLAYLIST_CALLBACK:
 
@@ -66,9 +74,47 @@ public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.On
                 ArrayList<Playlist> playlists = new ArrayList<>();
                 Collections.addAll(playlists, data.getData());
 
-                mainActivity.runOnUiThread(() ->{
+
+                mainActivity.runOnUiThread(() -> {
 
                     mainActivity.getAdapter().setPlaylists(playlists);
+                    mainActivity.getAdapter().notifyDataSetChanged();
+
+                });
+
+
+                break;
+
+
+            case Constants.GET_PLAYLIST_INFO_CALLBACK:
+
+                Gson gson2 = new Gson();
+                selected = gson2.fromJson(response, Playlist.class);
+
+                break;
+
+
+            case Constants.GET_TRACKLIST_CALLBACK:
+
+
+                Gson gson3 = new Gson();
+                dt = gson3.fromJson(response, DataContainerTrack.class);
+
+                intent.putExtra("dataTracks", dt);
+                intent.putExtra("playlist", selected);
+                mainActivity.startActivity(intent);
+
+                break;
+
+            case Constants.UPDATE_MORE_INFO_CALLBACK:
+
+                Gson gson4 = new Gson();
+                data = gson4.fromJson(response, DataContainerPlaylist.class);
+                Collections.addAll(mainActivity.getAdapter().getPlaylists(), data.getData());
+
+                mainActivity.runOnUiThread(()->{
+
+
                     mainActivity.getAdapter().notifyDataSetChanged();
 
 
@@ -76,44 +122,77 @@ public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.On
 
 
 
-                break;
-
-
-            case Constants.GET_TRACKLIST_CALLBACK:
-
-                Intent i = new Intent(mainActivity, TracklistActivity.class);
-                i.putExtra("response",response);
-                mainActivity.startActivity(i);
 
                 break;
-
 
         }
-   }
+    }
 
-   public void searchPlaylist(){
+    public void searchPlaylist() {
 
         String playlistTitle = mainActivity.getSearchPlaylist().getText().toString();
 
-        new Thread(()->{
+        if(!playlistTitle.isEmpty()) {
 
-            utilDomi.GETrequest(Constants.SEARCH_PLAYLIST_CALLBACK, "https://api.deezer.com/search/playlist?q="+playlistTitle);
+            new Thread(() -> {
 
-        }).start();
+                utilDomi.GETrequest(Constants.SEARCH_PLAYLIST_CALLBACK, "https://api.deezer.com/search/playlist?q=" + playlistTitle);
 
+            }).start();
+        }else{
 
+            Toast.makeText(mainActivity.getApplicationContext(),"There is no text in the text field.", Toast.LENGTH_SHORT).show();
 
-   }
+        }
+
+    }
 
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            new Thread(()->{
+        new Thread(() -> {
 
-                utilDomi.GETrequest(Constants.GET_TRACKLIST_CALLBACK, mainActivity.getAdapter().getPlaylists().get(position).getTracklist());
+            utilDomi.GETrequest(Constants.GET_PLAYLIST_INFO_CALLBACK, "https://api.deezer.com/playlist/" + mainActivity.getAdapter().getPlaylists().get(position).getId());
+            utilDomi.GETrequest(Constants.GET_TRACKLIST_CALLBACK, mainActivity.getAdapter().getPlaylists().get(position).getTracklist());
+
+
+        }).start();
+
+
+    }
+
+
+    @Override
+    public void onRefresh(SwipyRefreshLayoutDirection direction) {
+
+        if (data.getNext() != null && data.getNext() != "") {
+            new Thread(() -> {
+
+                utilDomi.GETrequest(Constants.UPDATE_MORE_INFO_CALLBACK, data.getNext());
 
             }).start();
+
+
+        }
+
+        if(data.getNext() == null || data.getNext() == ""){
+
+            Toast.makeText(mainActivity.getApplicationContext(), "There is no more results.", Toast.LENGTH_SHORT).show();
+
+        }
+
+        new Thread(()->{
+
+            try {
+                Thread.sleep(1500);
+
+                mainActivity.getMySwipy().setRefreshing(false);
+            }catch (Exception ex){
+
+
+            }
+        }).start();
 
     }
 }

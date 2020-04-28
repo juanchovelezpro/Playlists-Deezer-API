@@ -1,8 +1,10 @@
 package com.example.reto2deezer.model;
 
-public class Album {
+import java.io.Serializable;
 
-    private String name;
+public class Album implements Serializable {
+
+    private String title;
     private String cover_big;
     private String cover_medium;
 
@@ -11,8 +13,8 @@ public class Album {
 
     }
 
-    public Album(String name, String cover_big, String cover_medium) {
-        this.name = name;
+    public Album(String title, String cover_big, String cover_medium) {
+        this.title = title;
         this.cover_big = cover_big;
         this.cover_medium = cover_medium;
     }
@@ -33,11 +35,11 @@ public class Album {
         this.cover_big = cover_big;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
