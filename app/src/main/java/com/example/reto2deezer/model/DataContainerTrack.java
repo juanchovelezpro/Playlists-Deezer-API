@@ -2,7 +2,7 @@ package com.example.reto2deezer.model;
 
 import java.io.Serializable;
 
-public class DataContainerTrack implements Serializable{
+public class DataContainerTrack implements Serializable {
 
     private Track[] data;
     private String next;

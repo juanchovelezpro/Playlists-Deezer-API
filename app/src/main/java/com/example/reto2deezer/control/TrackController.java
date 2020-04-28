@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide;
 import com.example.reto2deezer.R;
 import com.example.reto2deezer.model.Track;
 import com.example.reto2deezer.view.TrackActivity;
-import com.example.reto2deezer.view.TracklistActivity;
 
 public class TrackController implements View.OnClickListener {
 
@@ -65,7 +64,7 @@ public class TrackController implements View.OnClickListener {
 
             case R.id.arrowBack:
 
-              activity.onBackPressed();
+                activity.onBackPressed();
 
                 break;
 

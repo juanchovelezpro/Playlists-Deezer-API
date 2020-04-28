@@ -18,15 +18,18 @@
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="364dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:background="#3F7EB5"
             android:text="Search Playlist"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/back"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
@@ -45,8 +48,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="405dp"
-        android:layout_height="305dp"
+        android:layout_width="396dp"
+        android:layout_height="306dp"
         android:background="#4F97D6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +58,10 @@
         <TextView
             android:id="@+id/tracklistTitle"
             android:layout_width="0dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="160dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="1dp"
             android:autoText="false"
             android:scrollbarAlwaysDrawHorizontalTrack="true"
             android:scrollbarAlwaysDrawVerticalTrack="true"
@@ -65,10 +70,10 @@
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:textStyle="bold"
+            app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tracklistImage" />
 
         <ImageView
             android:id="@+id/tracklistImage"
@@ -83,15 +88,19 @@
 
         <TextView
             android:id="@+id/description"
-            android:layout_width="362dp"
+            android:layout_width="0dp"
             android:layout_height="65dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="204dp"
+            android:layout_marginEnd="24dp"
             android:scrollbarAlwaysDrawHorizontalTrack="true"
             android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false"
             android:text="Description."
             android:textColor="#FFFFFF"
             android:textSize="16sp"
+            android:verticalScrollbarPosition="right"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,8 +108,8 @@
 
         <TextView
             android:id="@+id/numberTracks3"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_width="117dp"
+            android:layout_height="27dp"
             android:layout_marginStart="96dp"
             android:layout_marginTop="276dp"
             android:text="#######"
@@ -108,6 +117,7 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:autoSizeTextType="none"
             app:layout_constraintEnd_toStartOf="@+id/textView11"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -127,22 +137,25 @@
 
         <TextView
             android:id="@+id/numberFans"
-            android:layout_width="0dp"
+            android:layout_width="109dp"
             android:layout_height="25dp"
-            android:layout_marginTop="276dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:text="#######"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:autoSizeTextType="none"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView11"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/description" />
 
         <TextView
             android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="220dp"
+            android:layout_width="49dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="212dp"
             android:layout_marginTop="276dp"
             android:text="Fans:"
             android:textColor="#FFFFFF"

@@ -18,7 +18,7 @@ public class PlaylistAdapter extends BaseAdapter {
     private MainActivity activity;
     private ArrayList<Playlist> playlists;
 
-    public PlaylistAdapter(MainActivity activity){
+    public PlaylistAdapter(MainActivity activity) {
 
         this.activity = activity;
 
@@ -55,12 +55,12 @@ public class PlaylistAdapter extends BaseAdapter {
 
         titlePlaylist.setText(playlists.get(position).getTitle());
         userOwner.setText(playlists.get(position).getUser().getName());
-        numberTrack.setText(playlists.get(position).getNb_tracks()+"");
+        numberTrack.setText(playlists.get(position).getNb_tracks() + "");
 
         return row;
     }
 
-    public void addPlaylist(Playlist playlist){
+    public void addPlaylist(Playlist playlist) {
 
         playlists.add(playlist);
         notifyDataSetChanged();

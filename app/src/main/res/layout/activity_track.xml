@@ -19,15 +19,18 @@
 
     <TextView
         android:id="@+id/titleTrack"
-        android:layout_width="389dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:autoText="false"
+        android:phoneNumber="false"
         android:text="TitleTrack"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
         android:textSize="30sp"
         android:textStyle="bold"
+        app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +38,7 @@
 
     <TextView
         android:id="@+id/artistName"
-        android:layout_width="369dp"
+        android:layout_width="0dp"
         android:layout_height="36dp"
         android:text="ArtistName"
         android:textAlignment="center"
@@ -48,7 +51,7 @@
 
     <TextView
         android:id="@+id/albumTitle"
-        android:layout_width="377dp"
+        android:layout_width="0dp"
         android:layout_height="41dp"
         android:layout_marginTop="4dp"
         android:text="AlbumTitle"
@@ -63,7 +66,7 @@
 
     <TextView
         android:id="@+id/durationText"
-        android:layout_width="367dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="12dp"
         android:text="Duration"
@@ -125,7 +128,7 @@
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="0dp"
+        android:layout_width="341dp"
         android:layout_height="35dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="12dp"
@@ -133,6 +136,7 @@
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

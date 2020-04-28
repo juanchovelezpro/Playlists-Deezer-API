@@ -18,7 +18,7 @@ public class Track implements Serializable {
     public Track() {
     }
 
-    public Track(long id, String title,String title_short, int duration, String link, Album album, Artist artist, String release_date) {
+    public Track(long id, String title, String title_short, int duration, String link, Album album, Artist artist, String release_date) {
         this.id = id;
         this.title = title;
         this.title_short = title_short;
@@ -40,10 +40,10 @@ public class Track implements Serializable {
     public String getRelease_date() {
 
         String r = "";
-        if(release_date != null && release_date != "") {
+        if (release_date != null && release_date != "") {
             String[] date = release_date.split("-");
             r = date[0];
-        }else{
+        } else {
 
             r = "Not found";
 
@@ -75,17 +75,17 @@ public class Track implements Serializable {
 
         String dur = "";
 
-        double aux= duration/60.0;
+        double aux = duration / 60.0;
         int min = (int) aux;
-        int seconds = (int)((aux-min)*60.0);
+        int seconds = (int) ((aux - min) * 60.0);
 
-        if(seconds/10 < 1){
+        if (seconds / 10 < 1) {
 
-            dur += min+":0"+seconds;
+            dur += min + ":0" + seconds;
 
-        }else{
+        } else {
 
-            dur += min+":"+seconds;
+            dur += min + ":" + seconds;
 
         }
 

@@ -1,6 +1,7 @@
 package com.example.reto2deezer.control;
 
 import android.content.Intent;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class TracklistController implements View.OnClickListener, HTTPSWebUtilDo
 
         tracklistActivity.getBack().setOnClickListener(this);
         tracklistActivity.getMyRefresh().setOnRefreshListener(this);
+        tracklistActivity.getDescription().setMovementMethod(new ScrollingMovementMethod());
 
         data = (DataContainerTrack) tracklistActivity.getIntent().getExtras().get("dataTracks");
         playlist = (Playlist) tracklistActivity.getIntent().getExtras().get("playlist");
@@ -147,9 +149,9 @@ public class TracklistController implements View.OnClickListener, HTTPSWebUtilDo
 
         }
 
-        if(data.getNext() == null || data.getNext() == ""){
+        if (data.getNext() == null || data.getNext() == "") {
 
-            Toast.makeText(tracklistActivity.getApplicationContext(),"There is no more tracks in this playlist.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(tracklistActivity.getApplicationContext(), "There is no more tracks in this playlist.", Toast.LENGTH_SHORT).show();
 
         }
 

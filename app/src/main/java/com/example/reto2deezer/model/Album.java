@@ -8,7 +8,7 @@ public class Album implements Serializable {
     private String cover_big;
     private String cover_medium;
 
-    public Album(){
+    public Album() {
 
 
     }

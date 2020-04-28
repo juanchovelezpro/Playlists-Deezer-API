@@ -8,12 +8,12 @@
 
     <ImageView
         android:id="@+id/playlistImage"
-        android:layout_width="115dp"
-        android:layout_height="99dp"
+        android:layout_width="107dp"
+        android:layout_height="105dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.555"
+        app:layout_constraintVertical_bias="1.0"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -42,8 +42,8 @@
 
     <TextView
         android:id="@+id/numberTracks2"
-        android:layout_width="153dp"
-        android:layout_height="23dp"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
         android:layout_marginTop="8dp"
         android:text="Number of Tracks:"
         android:textColor="#FFFFFF"
@@ -56,7 +56,7 @@
 
     <TextView
         android:id="@+id/titlePlaylist"
-        android:layout_width="240dp"
+        android:layout_width="0dp"
         android:layout_height="26dp"
         android:layout_marginTop="10dp"
         android:maxLines="1"
@@ -70,7 +70,7 @@
 
     <TextView
         android:id="@+id/userOwner"
-        android:layout_width="185dp"
+        android:layout_width="0dp"
         android:layout_height="26dp"
         android:layout_marginTop="8dp"
         android:maxLines="1"
@@ -84,12 +84,13 @@
 
     <TextView
         android:id="@+id/numberTracks1"
-        android:layout_width="132dp"
-        android:layout_height="21dp"
+        android:layout_width="130dp"
+        android:layout_height="24dp"
         android:layout_marginTop="8dp"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/numberTracks2"
         app:layout_constraintTop_toBottomOf="@+id/userOwner" />
 </androidx.constraintlayout.widget.ConstraintLayout>

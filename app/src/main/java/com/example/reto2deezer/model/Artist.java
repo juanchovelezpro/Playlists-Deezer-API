@@ -6,12 +6,12 @@ public class Artist implements Serializable {
 
     private String name;
 
-    public Artist(){
+    public Artist() {
 
 
     }
 
-    public Artist(String name){
+    public Artist(String name) {
 
         this.name = name;
 

@@ -53,10 +53,10 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolderTr
     @Override
     public void onBindViewHolder(@NonNull ViewHolderTrack holder, int position) {
 
-            holder.trackTitle.setText(tracks.get(position).getTitle_short());
-            holder.artist.setText(tracks.get(position).getArtist().getName());
-            holder.released.setText(tracks.get(position).getRelease_date());
-            holder.putImage(activity, tracks, position);
+        holder.trackTitle.setText(tracks.get(position).getTitle_short());
+        holder.artist.setText(tracks.get(position).getArtist().getName());
+        holder.released.setText(tracks.get(position).getRelease_date());
+        holder.putImage(activity, tracks, position);
 
     }
 

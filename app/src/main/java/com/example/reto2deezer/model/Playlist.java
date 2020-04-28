@@ -14,11 +14,11 @@ public class Playlist implements Serializable {
     private User user;
     private String tracklist;
 
-    public Playlist(){
+    public Playlist() {
 
     }
 
-    public Playlist(long id, String title,String description, int nb_tracks,int fans, String picture_small, String picture_big, User user, String tracklist) {
+    public Playlist(long id, String title, String description, int nb_tracks, int fans, String picture_small, String picture_big, User user, String tracklist) {
 
         this.id = id;
         this.title = title;
@@ -41,9 +41,9 @@ public class Playlist implements Serializable {
 
     public String getDescription() {
 
-        if(description == null || description == ""){
+        if (description == null || description == "") {
 
-            description+= "No description.";
+            description += "No description.";
 
         }
 

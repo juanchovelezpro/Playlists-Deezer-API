@@ -7,7 +7,7 @@ public class DataContainerPlaylist implements Serializable {
     private Playlist[] data;
     private String next;
 
-    public DataContainerPlaylist(){
+    public DataContainerPlaylist() {
 
 
     }

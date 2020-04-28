@@ -29,7 +29,7 @@
             android:id="@+id/searchPlaylist"
             android:layout_width="312dp"
             android:layout_height="46dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="28dp"
             android:layout_marginTop="40dp"
             android:backgroundTint="#FFFFFF"
             android:ems="10"
@@ -40,7 +40,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.84000003" />
+            app:layout_constraintVertical_bias="0.87" />
 
         <TextView
             android:id="@+id/textView3"
@@ -57,7 +57,9 @@
             android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="32dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="6dp"
             android:text="Search Playlist"
             android:textColor="#FFFFFF"
             android:textSize="24sp"

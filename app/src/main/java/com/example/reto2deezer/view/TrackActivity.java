@@ -1,12 +1,12 @@
 package com.example.reto2deezer.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reto2deezer.R;
 import com.example.reto2deezer.control.TrackController;

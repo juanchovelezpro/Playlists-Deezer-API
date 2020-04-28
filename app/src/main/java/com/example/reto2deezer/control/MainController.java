@@ -1,9 +1,7 @@
 package com.example.reto2deezer.control;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
@@ -71,17 +69,20 @@ public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.On
 
                 Gson gson = new Gson();
                 data = gson.fromJson(response, DataContainerPlaylist.class);
-                ArrayList<Playlist> playlists = new ArrayList<>();
-                Collections.addAll(playlists, data.getData());
+
+                if (data.getData().length > 0) {
+                    ArrayList<Playlist> playlists = new ArrayList<>();
+                    Collections.addAll(playlists, data.getData());
 
 
-                mainActivity.runOnUiThread(() -> {
+                    mainActivity.runOnUiThread(() -> {
 
-                    mainActivity.getAdapter().setPlaylists(playlists);
-                    mainActivity.getAdapter().notifyDataSetChanged();
+                        mainActivity.getAdapter().setPlaylists(playlists);
+                        mainActivity.getAdapter().notifyDataSetChanged();
+                        mainActivity.getListPlaylist().smoothScrollToPosition(0);
 
-                });
-
+                    });
+                }
 
                 break;
 
@@ -112,15 +113,13 @@ public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.On
                 data = gson4.fromJson(response, DataContainerPlaylist.class);
                 Collections.addAll(mainActivity.getAdapter().getPlaylists(), data.getData());
 
-                mainActivity.runOnUiThread(()->{
+                mainActivity.runOnUiThread(() -> {
 
 
                     mainActivity.getAdapter().notifyDataSetChanged();
 
 
                 });
-
-
 
 
                 break;
@@ -132,16 +131,16 @@ public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.On
 
         String playlistTitle = mainActivity.getSearchPlaylist().getText().toString();
 
-        if(!playlistTitle.isEmpty()) {
+        if (!playlistTitle.isEmpty()) {
 
             new Thread(() -> {
 
                 utilDomi.GETrequest(Constants.SEARCH_PLAYLIST_CALLBACK, "https://api.deezer.com/search/playlist?q=" + playlistTitle);
 
             }).start();
-        }else{
+        } else {
 
-            Toast.makeText(mainActivity.getApplicationContext(),"There is no text in the text field.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity.getApplicationContext(), "There is no text in the text field.", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -176,19 +175,19 @@ public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.On
 
         }
 
-        if(data.getNext() == null || data.getNext() == ""){
+        if (data.getNext() == null || data.getNext() == "") {
 
             Toast.makeText(mainActivity.getApplicationContext(), "There is no more results.", Toast.LENGTH_SHORT).show();
 
         }
 
-        new Thread(()->{
+        new Thread(() -> {
 
             try {
                 Thread.sleep(1500);
 
                 mainActivity.getMySwipy().setRefreshing(false);
-            }catch (Exception ex){
+            } catch (Exception ex) {
 
 
             }
