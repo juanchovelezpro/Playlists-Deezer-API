@@ -44,7 +44,7 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="421dp"
+            android:layout_width="0dp"
             android:layout_height="58dp"
             android:background="#3F7EB5"
             android:textColor="#FFFFFF"
@@ -55,7 +55,7 @@
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="244dp"
+            android:layout_width="0dp"
             android:layout_height="32dp"
             android:layout_marginStart="16dp"
             android:text="Search Playlist"
@@ -84,7 +84,7 @@
 
     <com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
         android:id="@+id/mySwipy"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
