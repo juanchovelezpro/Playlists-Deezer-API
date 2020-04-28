@@ -165,33 +165,39 @@ public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.On
     @Override
     public void onRefresh(SwipyRefreshLayoutDirection direction) {
 
-        if (data.getNext() != null && data.getNext() != "") {
-            new Thread(() -> {
+        if (data != null) {
+            if (data.getNext() != null && data.getNext() != "") {
+                new Thread(() -> {
 
-                utilDomi.GETrequest(Constants.UPDATE_MORE_INFO_CALLBACK, data.getNext());
+                    utilDomi.GETrequest(Constants.UPDATE_MORE_INFO_CALLBACK, data.getNext());
 
-            }).start();
-
-
-        }
-
-        if (data.getNext() == null || data.getNext() == "") {
-
-            Toast.makeText(mainActivity.getApplicationContext(), "There is no more results.", Toast.LENGTH_SHORT).show();
-
-        }
-
-        new Thread(() -> {
-
-            try {
-                Thread.sleep(1500);
-
-                mainActivity.getMySwipy().setRefreshing(false);
-            } catch (Exception ex) {
+                }).start();
 
 
             }
-        }).start();
 
+            if (data.getNext() == null || data.getNext() == "") {
+
+                Toast.makeText(mainActivity.getApplicationContext(), "There is no more results.", Toast.LENGTH_SHORT).show();
+
+            }
+
+            new Thread(() -> {
+
+                try {
+                    Thread.sleep(1500);
+
+                    mainActivity.getMySwipy().setRefreshing(false);
+                } catch (Exception ex) {
+
+
+                }
+            }).start();
+
+        }else{
+
+
+            mainActivity.getMySwipy().setRefreshing(false);
+        }
     }
 }

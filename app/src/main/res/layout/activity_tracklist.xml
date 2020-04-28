@@ -48,12 +48,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="396dp"
-        android:layout_height="306dp"
+        android:layout_width="0dp"
+        android:layout_height="310dp"
         android:background="#4F97D6"
+        app:layout_constraintBottom_toTopOf="@+id/myRefresh"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/tracklistTitle"
@@ -108,67 +111,77 @@
 
         <TextView
             android:id="@+id/numberTracks3"
-            android:layout_width="117dp"
-            android:layout_height="27dp"
-            android:layout_marginStart="96dp"
-            android:layout_marginTop="276dp"
-            android:text="#######"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:text="#"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:autoSizeTextType="none"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView11"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="276dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
             android:text="Tracks:"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textSize="26sp"
             android:textStyle="bold"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/numberFans"
-            android:layout_width="109dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="4dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
-            android:text="#######"
+            android:autoText="false"
+            android:text="#"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:autoSizeTextType="none"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView11"
             app:layout_constraintTop_toBottomOf="@+id/description" />
 
         <TextView
             android:id="@+id/textView11"
-            android:layout_width="49dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="212dp"
-            android:layout_marginTop="276dp"
+            android:layout_width="0dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="228dp"
+            android:layout_marginTop="6dp"
             android:text="Fans:"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textSize="26sp"
             android:textStyle="bold"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout
         android:id="@+id/myRefresh"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:scrollbarStyle="insideOverlay"
+        android:verticalScrollbarPosition="right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -179,13 +192,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tracklist"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="1dp"
             android:background="#3C78AC"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
             app:layout_constraintVertical_bias="0.0" />
