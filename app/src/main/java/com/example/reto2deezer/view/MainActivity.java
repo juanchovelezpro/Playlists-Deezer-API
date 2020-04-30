@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reto2deezer.R;
 import com.example.reto2deezer.control.MainController;
+import com.example.reto2deezer.control.PlaylistAdapter;
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 
 public class MainActivity extends AppCompatActivity {

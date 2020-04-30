@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.reto2deezer.R;
+import com.example.reto2deezer.control.TrackAdapter;
 import com.example.reto2deezer.control.TracklistController;
 import com.omadahealth.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 

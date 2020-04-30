@@ -1,4 +1,4 @@
-package com.example.reto2deezer.view;
+package com.example.reto2deezer.control;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.reto2deezer.R;
 import com.example.reto2deezer.model.Playlist;
+import com.example.reto2deezer.view.MainActivity;
 
 import java.util.ArrayList;
 
