@@ -166,7 +166,7 @@ public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.On
     public void onRefresh(SwipyRefreshLayoutDirection direction) {
 
         if (data != null) {
-            if (data.getNext() != null && data.getNext() != "") {
+            if (data.getNext() != null && !data.getNext().equals("")) {
                 new Thread(() -> {
 
                     utilDomi.GETrequest(Constants.UPDATE_MORE_INFO_CALLBACK, data.getNext());
@@ -176,7 +176,7 @@ public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.On
 
             }
 
-            if (data.getNext() == null || data.getNext() == "") {
+            if (data.getNext() == null || data.getNext().equals("")) {
 
                 Toast.makeText(mainActivity.getApplicationContext(), "There is no more results.", Toast.LENGTH_SHORT).show();
 
@@ -188,7 +188,7 @@ public class MainController implements View.OnClickListener, HTTPSWebUtilDomi.On
                     Thread.sleep(1500);
 
                     mainActivity.getMySwipy().setRefreshing(false);
-                } catch (Exception ex) {
+                } catch (Exception ignored) {
 
 
                 }

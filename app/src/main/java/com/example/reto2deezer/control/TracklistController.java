@@ -139,7 +139,7 @@ public class TracklistController implements View.OnClickListener, HTTPSWebUtilDo
     public void onRefresh(SwipyRefreshLayoutDirection direction) {
 
 
-        if (data.getNext() != null && data.getNext() != "") {
+        if (data.getNext() != null && !data.getNext().equals("")) {
 
             new Thread(() -> {
 
@@ -149,7 +149,7 @@ public class TracklistController implements View.OnClickListener, HTTPSWebUtilDo
 
         }
 
-        if (data.getNext() == null || data.getNext() == "") {
+        if (data.getNext() == null || data.getNext().equals("")) {
 
             Toast.makeText(tracklistActivity.getApplicationContext(), "There is no more tracks in this playlist.", Toast.LENGTH_SHORT).show();
 
